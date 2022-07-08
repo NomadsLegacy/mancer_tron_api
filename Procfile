@@ -1,0 +1,1 @@
+web:gunicorn tron_api.wsgi
