@@ -1,1 +1,1 @@
-web:gunicorn tron_api.wsgi
+web: gunicorn tron_api.wsgi
