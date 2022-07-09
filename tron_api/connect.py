@@ -47,7 +47,6 @@ def callback2(success, failure):
                 address= pair[2]
             elif i == 4:
                 username= pair[3]
-        print(success)
     else:
         print("Something went wrong with your first API call.  :(")
         if failure:
@@ -62,4 +61,3 @@ request2 = {
 PlayFabClientAPI.LoginWithEmailAddress(request, callback)
 PlayFabClientAPI.GetAccountInfo(request,callback2)
 PlayFabClientAPI.AddUserVirtualCurrency(request2,callback)
-PlayFabClientAPI.GetUserData(request2, callback)

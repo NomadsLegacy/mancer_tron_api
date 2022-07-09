@@ -5,4 +5,4 @@ class Wallet(models.Model):
     password = models.CharField(max_length=100)
     wallet_address = models.CharField(max_length=500)
     private_key = models.CharField(max_length=500)
-    amount = models.CharField(max_length=100)
+    amount = models.IntegerField()

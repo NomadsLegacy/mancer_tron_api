@@ -134,11 +134,12 @@ def sell_for_tron(amount, wallet):
             .broadcast()
         )
         # wait until the transaction is sent through and then return the details
-        return txn.sign(priv_key).broadcast()
+        return txn.wait()
 
     # return the exception
     except Exception as ex:
-        return ex
+        print(ex)
+        return False
 
 def buy_with_tron(amount, wallet,private_key):
     try:
@@ -154,12 +155,12 @@ def buy_with_tron(amount, wallet,private_key):
             .broadcast()
         )
         # wait until the transaction is sent through and then return the details
-        print(txn.sign(priv_key).broadcast())
         return txn.wait()
 
     # return the exception
     except Exception as ex:
-        return ex
+        print(ex)
+        return False
 
 @api_view(["GET",])
 def buying_crystals(request,email,format=None):
@@ -186,11 +187,12 @@ def buying_crystals(request,email,format=None):
             try:
                 amount = float(amount)+1
                 amount = amount*1000000
-                buy_with_tron(amount,address,private_key)
+                result = buy_with_tron(amount,address,private_key)
+                if result != False:
+                    PlayFabClientAPI.AddUserVirtualCurrency(request2, callback)
             except Exception as ex:
                 print("Error ", ex)
                 return ex
-            PlayFabClientAPI.AddUserVirtualCurrency(request2, callback)
         return Response(serializer.data)
 
 @api_view(["GET",])
@@ -217,9 +219,10 @@ def selling_crystals(request,email,format=None):
         if balance > 0:
             try:
                 amount = float(amount)*1000000
-                sell_for_tron(amount,adrress)
+                result = sell_for_tron(amount,adrress)
+                if result != False:
+                    PlayFabClientAPI.SubtractUserVirtualCurrency(request2, callback)
             except Exception as ex:
                 print("Error ", ex)
                 return ex
-            PlayFabClientAPI.SubtractUserVirtualCurrency(request2, callback)
         return Response(serializer.data)

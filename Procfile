@@ -1,1 +1,1 @@
-web: gunicorn tron_api.wsgi --log-file -
+web: gunicorn myproject.wsgi
