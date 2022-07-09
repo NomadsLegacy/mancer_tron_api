@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web: gunicorn tron_api.wsgi
