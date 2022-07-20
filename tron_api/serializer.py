@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Wallet
+from .models import dev_data
 
 class Wallet_serializers(serializers.ModelSerializer):
     class Meta:
-        model = Wallet
-        fields =['email_address','password','wallet_address','private_key','amount']
+        model = dev_data
+        fields =['wallet_address','private_key','TitleId']
