@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .models import dev_data
 from .serializer import Wallet_serializers
 from rest_framework.decorators import api_view
@@ -87,6 +87,15 @@ def callback(success, failure):
         if failure:
             print("Here's some debug information:")
             print(failure)
+
+
+@api_view(["POST",])
+def tron_balance(request):
+
+    tron = account_balance(request.data["public_key"])
+
+    return JsonResponse({"balance" : tron})
+
 
 @api_view(["POST",])
 def buying_crystals(request,format=None):
