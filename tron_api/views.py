@@ -93,7 +93,7 @@ def callback(success, failure):
 def tron_balance(request):
     if request.method == "POST":
         tron = account_balance(request.data["public_key"])
-        return JsonResponse({"data":[{"balance" : tron}]})
+        return JsonResponse({"data":[{"balance" : tron},{"result":1}]})
 
 
 @api_view(["POST",])
