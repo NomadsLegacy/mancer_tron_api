@@ -94,7 +94,7 @@ def tron_balance(request):
 
     tron = account_balance(request.data["public_key"])
 
-    return JsonResponse({"balance" : tron})
+    return JsonResponse({"data":[{"balance" : tron}]})
 
 
 @api_view(["POST",])
